@@ -1,2 +1,2 @@
-# couchbot
-A Slack bot for Couch Potato notifications
+# CouchBot
+A Slack bot for queuing movies to Couch Potato
