@@ -8,4 +8,4 @@
 
 # Usage Example
 
-    couchbot myslackbotapitoken couchpotatoapikey http://my.couch.potato.server
+    couchbot myslackbotapitoken couchpotatoapikey http://my.couch.potato.server/
