@@ -14,4 +14,4 @@
 
 # Queue Example in Slack
 
-    ![alt tag](http://i.imgur.com/Hx5Hjwt.png)
+![alt tag](http://i.imgur.com/Hx5Hjwt.png)
