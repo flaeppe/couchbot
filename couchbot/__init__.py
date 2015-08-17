@@ -1,6 +1,8 @@
 import argparse
 import re
 import requests
+import time
+import sys
 from slackclient import SlackClient
 
 
@@ -68,18 +70,24 @@ def tell_couch_potato(slack_data, sc):
 def start():
     global bot_token
     sc = SlackClient(bot_token)
-
-    if sc.rtm_connect():
-        bot_id = sc.server.users[0].id
-        bot_mention = '<@{}>'.format(bot_id)
-        while True:
-            rtm = sc.rtm_read()
-            if len(rtm) > 0:
-                slack_data = prepare_couch_data(rtm, bot_mention)
-                if len(slack_data['imdb_ids']) > 0:
-                    tell_couch_potato(slack_data, sc)
+    retry_times = [1, 2, 5, 30, 60] + [60] * 9
+    retry_message = 'Connection failed. Retrying in {} seconds...'
+    for retry_time in retry_times:
+        if sc.rtm_connect():
+            break
+        print(retry_message.format(retry_time))
+        time.sleep(retry_time)
     else:
-        print("Connection Failed, invalid token")
+        sys.exit('Conection to the Slack RTM API still fails after several '
+                 'retries (check your connection and API token).')
+    bot_id = sc.server.users[0].id
+    bot_mention = '<@{}>'.format(bot_id)
+    while True:
+        rtm = sc.rtm_read()
+        if len(rtm) > 0:
+            slack_data = prepare_couch_data(rtm, bot_mention)
+            if len(slack_data['imdb_ids']) > 0:
+                tell_couch_potato(slack_data, sc)
 
 
 def main():
