@@ -1,8 +1,6 @@
 # CouchBot
 
-    A Slack bot for queuing movies to Couch Potato.
-    All needed to queue a movie in Couch Potato is to mention the name
-    of the bot and an imdb URL to the movie.
+A Slack bot for queuing movies to Couch Potato. All you need to do in order to queue a movie is to mention the bot with the IMDB URL of the movie.
 
 # Installation
 
@@ -14,4 +12,4 @@
 
 # Queue Example in Slack
 
-![alt tag](http://i.imgur.com/Hx5Hjwt.png)
+![example](http://i.imgur.com/Hx5Hjwt.png)
